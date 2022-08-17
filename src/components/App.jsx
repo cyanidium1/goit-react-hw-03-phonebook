@@ -59,6 +59,21 @@ export class App extends Component {
     });
   };
 
+  componentDidMount() {
+    const telBook = JSON.parse(localStorage.getItem('telBook'));
+    if (telBook) {
+      this.setState({
+        book: telBook,
+      });
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.book !== prevState.book) {
+      localStorage.setItem('telBook', JSON.stringify(this.state.book));
+    }
+  }
+
   render() {
     return (
       <>
